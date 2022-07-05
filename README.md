@@ -5,3 +5,5 @@
 4. add `"type": "module"` to package.json for using ES6
 5. check server runs using `node index.js`
 6. npm install aws-sdk
+
+https://aws.plainenglish.io/using-node-js-to-display-images-in-a-private-aws-s3-bucket-4c043ed5c5d0
