@@ -1,6 +1,7 @@
 import express from 'express';
 import AWS from 'aws-sdk';
 import keys from './config/keys.js'
+import bucket from './config/bucket.js'
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -11,12 +12,7 @@ app.get('/', (req, res) => {
     let s3 = new AWS.S3();
 
     async function getImage(){
-        const data = s3.getObject({
-            Bucket: 'dina-dopt-dev',
-            Key: 'velociraptor-paleorex-full.jpeg'
-            })
-            .promise();
-        console.log(data);
+        const data = s3.getObject(bucket).promise();
         return data;
     }
 
@@ -27,7 +23,6 @@ app.get('/', (req, res) => {
     }
 
     getImage().then( img =>  {
-        console.log(img);
         let image="<img src='data:image/jpeg;base64," + encode(img.Body) + "'" + "/>";
         let startHTML = "<html><body></body>";
         let endHTML = "</body></html>";
